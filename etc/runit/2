@@ -1,0 +1,6 @@
+#!/bin/sh
+
+echo "STAGE 2: starting ..............."
+echo "STAGE 2: starting RUNSVDIR process ..............."
+exec runsvdir /etc/service
+echo "STAGE 2: stopped..........

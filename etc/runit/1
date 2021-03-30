@@ -1,0 +1,10 @@
+#!/bin/sh
+
+echo "STAGE 1: starting ..............."
+echo "Do all your init tasks/ pre reqs  here "
+
+
+/opt/scripts/create_mount.sh
+/opt/scripts/create_config.sh
+
+echo "STAGE 1: stopping ..............."

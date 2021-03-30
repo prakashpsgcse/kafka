@@ -1,0 +1,6 @@
+#!/bin/sh
+
+exec 2>&1
+echo "STAGE 3: starting shutdown process..............."
+echo "STAGE 3: Do all your graceful shutdown tasks here ..............."
+echo "STAGE 3: stopping ..............."

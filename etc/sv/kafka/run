@@ -1,0 +1,4 @@
+#!/bin/sh
+
+echo " starting kafka"
+exec /opt/kafka/bin/kafka-server-start.sh /opt/kafka/config/server.properties
