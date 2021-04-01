@@ -2,6 +2,49 @@
 
 echo "In create_config.sh file "
 echo "This file will contains scripts to create zoo.cfg file "
+
+#//////////////////////////////from create_brokerid.sh
+
+brokerID=${BROKER_ID:-0}
+
+
+#If no Broker ID then if its k8s get oridial and have broker id start and end
+# Calculate broker id from ORIDIAL + START
+# OR USE ZK LOCK to generate broker ID from START
+
+echo "broker id for this node ${brokerID}"
+export brokerID=$brokerID
+
+export hostIp=`hostname -I | cut -d' ' -f1`
+
+echo " IP of the machine is ${hostIp}"
+
+#//////////////////////////////from create_brokerid.sh
+#Lets Assume whatever starts with KAFKA we have to replace them with properties
+#Ex KAFKA_CONTROLLED_SHUTDOWN_ENABLE will be converted into controlled.shutdown.enable
+
+
+mkdir -p /etc/kafka/conf
+echo "broker.id=${brokerID}" > /etc/kafka/conf/server.properties
+
+
+logDir=${DATA_DIR:-/data/kafka}
+echo "log.dir=${logDir}" >> /etc/kafka/conf/server.properties
+
+port=${PORT:-9092}
+echo "advertised.port=${port}" >> /etc/kafka/conf/server.properties
+
+echo "advertised.host.name=${hostIp}" >> /etc/kafka/conf/server.properties
+
+echo "host.name=${hostIp}" >> /etc/kafka/conf/server.properties
+
+echo "advertised.listeners=PLAINTEXT://${hostIp}:${port}" >> /etc/kafka/conf/server.properties
+
+zookeeper=${ZOOKEEPER:-localhost:2181}
+echo "zookeeper.connect=${zookeeper}" >> /etc/kafka/conf/server.properties
+
+
+
 #
 #mkdir -p /etc/zookeeper/conf
 #

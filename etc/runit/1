@@ -6,5 +6,6 @@ echo "Do all your init tasks/ pre reqs  here "
 
 /opt/scripts/create_mount.sh
 /opt/scripts/create_config.sh
+/opt/scripts/create_brokerid.sh
 
 echo "STAGE 1: stopping ..............."
