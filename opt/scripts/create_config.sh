@@ -5,7 +5,21 @@ echo "This file will contains scripts to create zoo.cfg file "
 
 #//////////////////////////////from create_brokerid.sh
 
-brokerID=${BROKER_ID:-0}
+brokerIdStart=${BROKER_ID_START:-100}
+
+      echo "Finding/Generating broker id"
+      if [[ -z "${BROKER_ID}" ]]; then
+              echo "server id is not provided .Assuming its k8s deployment"
+              [[ `hostname` =~ -([0-9]+)$ ]] || exit 1
+              ordinal=${BASH_REMATCH[1]}
+              brokerID=$(( $brokerIdStart + $ordinal))
+        else
+               echo "broker id provided"
+              brokerID=${BROKER_ID}
+      fi
+
+
+
 
 
 #If no Broker ID then if its k8s get oridial and have broker id start and end
