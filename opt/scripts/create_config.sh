@@ -28,10 +28,11 @@ mkdir -p /etc/kafka/conf
 echo "broker.id=${brokerID}" > /etc/kafka/conf/server.properties
 
 
-logDir=${DATA_DIR:-/data/kafka}
-echo "log.dir=${logDir}" >> /etc/kafka/conf/server.properties
+logDir=${DATA_DIR:-/mnt/kafka}
+echo "log.dirs=${logDir}" >> /etc/kafka/conf/server.properties
 
 port=${PORT:-9092}
+echo "port=${port}" >> /etc/kafka/conf/server.properties
 echo "advertised.port=${port}" >> /etc/kafka/conf/server.properties
 
 echo "advertised.host.name=${hostIp}" >> /etc/kafka/conf/server.properties
